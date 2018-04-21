@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
-
+{% load i18n pages_tags %}
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}
 AWS Step by Step
@@ -25,31 +24,31 @@ AWS Step by Step
     <div class="col-lg-10 col-lg-offset-1">
             <div class="row">
                 <div class="col-md-4">
-                    アプリケーションエンジニア向け
+                    <a href="/aws/basic/">アプリケーションエンジニア向け</a>
                     <p class="text-center">
-                    <ul>はじめに</ul>
-                    <ul>チュートリアル１</ul>
-                    <ul>チュートリアル２</ul>
-                    <ul>チュートリアル３</ul>
-                    <ul>チュートリアルのその後</ul>
+                    <ul><a href="/aws/basic/はじめに/">はじめに</a></ul>
+                    <ul><a href="/aws/basic/チュートリアル1/">チュートリアル1</a></ul>
+                    <ul><a href="/aws/basic/チュートリアル2/">チュートリアル2</a></ul>
+                    <ul><a href="/aws/basic/チュートリアル3/">チュートリアル3</a></ul>
+                    <ul></ul>
                     </p>
                 </div>
                 <div class="col-md-4">
-                    オンプレミスエンジニア向け
+                    <a href="/aws/intermediate/">オンプレミスエンジニア向け</a>
                     <p class="text-center">
-                    <ul>クラウドサービスとは</ul>
-                    <ul>Web3層アーキテクチャの構築</ul>
-                    <ul>クラウドを活かした構成</ul>
-                    <ul>クラウドを学ぶべきか</ul>
+                    <ul><a href="/aws/intermediate/クラウドサービスとは/">クラウドサービスとは</a></ul>
+                    <ul><a href="/aws/intermediate/web3%E5%B1%A4%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3%E3%81%AE%E6%A7%8B%E7%AF%89/">Web3層アーキテクチャの構築</a></ul>
+                    <ul><a href="/aws/intermediate/クラウドを活かした構成/">クラウドを活かした構成</a></ul>
+                    <ul><a href="/aws/intermediate/クラウドを学ぶべきか/">クラウドを学ぶべきか</a></ul>
                     </p>
                 </div>
                 <div class="col-md-4">
-                    AWSエンジニア向け
+                    <a href="/aws/advanced/">AWSエンジニア向け</a>
                     <p class="text-center">
-                    <ul>DevOpsとは</ul>
-                    <ul>DevOpsのメリットデメリット</ul>
-                    <ul>DevOpsの構成例 </ul>
-                    <ul>「エンジニア」に求められる事</ul>
+                    <ul><a href="/aws/advanced/DevOpsとは/">DevOpsとは</a></ul>
+                    <ul><a href="/aws/advanced/DevOpsのメリットデメリット/">DevOpsのメリットデメリット</a></ul>
+                    <ul><a href="/aws/advanced/DevOpsの構成例/">DevOpsの構成例</a> </ul>
+                    <ul><a href="/aws/advanced/エンジニアに求められる事/">「エンジニア」に求められる事</a></ul>
                     </p>
                 </div>
             </div>

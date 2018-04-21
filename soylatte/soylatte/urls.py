@@ -43,7 +43,7 @@ urlpatterns += [
 
     url("^$", direct_to_template, {"template": "home.html"}, name="home"),
     url("^blog_post/$", direct_to_template, {"template": "blog-post.html"}, name="blog-post"),
-    url("^blog_home/$", direct_to_template, {"template": "blog-home.html"}, name="blog-home"),
+    url("^aws/$", direct_to_template, {"template": "home.html"}, name="blog-home"),
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your
