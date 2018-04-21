@@ -41,8 +41,9 @@ urlpatterns += [
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    url("^$", direct_to_template, {"template": "home.html"}, name="home"),
     url("^blog_post/$", direct_to_template, {"template": "blog-post.html"}, name="blog-post"),
+    url("^blog_home/$", direct_to_template, {"template": "blog-home.html"}, name="blog-home"),
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your

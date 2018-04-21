@@ -22,33 +22,15 @@
 {% endblock %}
 
 {% block main %}
+    <!-- Page Content -->
+    <div class="container">
 
-{% block blog_post_detail_postedby %}
-{% editable blog_post.publish_date %}
-<h6 class="post-meta">
-    {% trans "Posted by" %}:
-    {% with blog_post.user as author %}
-    <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
-    {% endwith %}
-    {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
-</h6>
-{% endeditable %}
-{% endblock %}
-{% block blog_post_detail_commentlink %}
-<p>
-    {% if blog_post.allow_comments %}
-        {% if settings.COMMENTS_DISQUS_SHORTNAME %}
-            (<a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-                data-disqus-identifier="{% disqus_id_for blog_post %}">{% spaceless %}
-                {% trans "Comments" %}
-            {% endspaceless %}</a>)
-        {% else %}(<a href="#comments">{% spaceless %}
-            {% blocktrans count comments_count=blog_post.comments_count %}{{ comments_count }} comment{% plural %}{{ comments_count }} comments{% endblocktrans %}
-            {% endspaceless %}</a>)
-        {% endif %}
-    {% endif %}
-</p>
-{% endblock %}
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+
 
 {% block blog_post_detail_featured_image %}
 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -80,19 +62,13 @@
 {% endif %}
 {% endblock %}
 
-{% block blog_post_detail_rating %}
-<div class="panel panel-default rating">
-    <div class="panel-body">
-    {% rating_for blog_post %}
-    </div>
-</div>
-{% endblock %}
-
 {% block blog_post_detail_sharebuttons %}
 {% set_short_url_for blog_post %}
 <a class="btn btn-sm share-twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ blog_post.short_url|urlencode }}&amp;text={{ blog_post.title|urlencode }}">{% trans "Share on Twitter" %}</a>
 <a class="btn btn-sm share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">{% trans "Share on Facebook" %}</a>
 {% endblock %}
+
+
 
 {% block blog_post_previous_next %}
 <ul class="pager">
@@ -126,8 +102,58 @@
 {% endif %}
 {% endblock %}
 
-{% block blog_post_detail_comments %}
-{% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
-{% endblock %}
+
+                    </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">Web Design</a>
+                    </li>
+                    <li>
+                      <a href="#">HTML</a>
+                    </li>
+                    <li>
+                      <a href="#">Freebies</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">JavaScript</a>
+                    </li>
+                    <li>
+                      <a href="#">CSS</a>
+                    </li>
+                    <li>
+                      <a href="#">Tutorials</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
+              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
 
 {% endblock %}

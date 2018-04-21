@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}
+AWS Step by Step
+<div class="container">
+    <h4>
+    <small class="text-muted offset-md-3">
+     システムエンジニアがAWSを活用する手法を紹介するサイトです。
+    実際に使えるAWS構築手法や運用のベストプラクティスを取り上げます。
+    </small>
+</h4>
+</div>
+{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home" %}</li>
+{% endblock %}
+
+{% block main %}
+{% blocktrans %}
+<div class="container">
+    <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+            <div class="row">
+                <div class="col-md-4">
+                    アプリケーションエンジニア向け
+                    <p class="text-center">
+                    <ul>はじめに</ul>
+                    <ul>チュートリアル１</ul>
+                    <ul>チュートリアル２</ul>
+                    <ul>チュートリアル３</ul>
+                    <ul>チュートリアルのその後</ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    オンプレミスエンジニア向け
+                    <p class="text-center">
+                    <ul>クラウドサービスとは</ul>
+                    <ul>Web3層アーキテクチャの構築</ul>
+                    <ul>クラウドを活かした構成</ul>
+                    <ul>クラウドを学ぶべきか</ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    AWSエンジニア向け
+                    <p class="text-center">
+                    <ul>DevOpsとは</ul>
+                    <ul>DevOpsのメリットデメリット</ul>
+                    <ul>DevOpsの構成例 </ul>
+                    <ul>「エンジニア」に求められる事</ul>
+                    </p>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+
+{% endblocktrans %}
+{% endblock %}

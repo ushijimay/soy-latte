@@ -59,7 +59,6 @@
     </button>
     {% block navbar_title %}
     {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
-    {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
     {% endblock%}
 </div>
 <div class="navbar-collapse collapse">
@@ -106,9 +105,6 @@
 </div>
 
 <footer>
-<div class="container">
-{% page_menu "pages/menus/footer.html" %}
-
 <div class="row">
 <p class="site-info text-center">
     {% trans "Powered by" %}
@@ -118,6 +114,12 @@
     <a href="http://www.djangoproject.com">Django</a>
     <span class="separator">|</span>
     {% trans "Theme by" %} <a target="_blank" href="http://getbootstrap.com">Bootstrap</a>
+    <!-- Footer -->
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; 2018 cloud steps </p>
+      </div>
+      <!-- /.container -->
+
 </p>
 </div>
 </div>
