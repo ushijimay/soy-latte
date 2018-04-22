@@ -339,4 +339,4 @@ else:
     set_dynamic_settings(globals())
 
 
-SITE_TITLE = "Cloud Steps"
+SITE_TITLE = "AWS Step by Step"

@@ -15,6 +15,24 @@
 {% editable page.richtextpage.content %}
 {{ page.richtextpage.content|richtext_filters }}
 {% endeditable %}
+{% block blog_post_previous_next %}
+<ul class="pager">
+{% with page.get_previous_by_publish_date as previous %}
+{% if previous %}
+<li class="previous">
+    <a href="{{ previous.get_absolute_url }}">&larr; {{ previous.title }}</a>
+</li>
+{% endif %}
+{% endwith %}
+{% with page.get_next_by_publish_date as next %}
+{% if next %}
+<li class="next">
+    <a href="{{ next.get_absolute_url }}">{{ next.title }} &rarr;</a>
+</li>
+{% endif %}
+{% endwith %}
+</ul>
+{% endblock %}
 
 
                     </div>

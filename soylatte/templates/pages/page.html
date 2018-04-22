@@ -16,7 +16,13 @@
 {% endmetablock %}{% endblock %}
 
 {% block title %}
-{% editable page.title %}{{ page.title }}{% endeditable %}
+{% editable page.title %}
+     {% if "エンジニア向け" in page.title %}
+         はじめに
+     {% else %}
+         {{ page.title }}
+     {% endif %}
+{% endeditable %}
 {% endblock %}
 
 {% block main %}
