@@ -1,6 +1,6 @@
 {% extends "pages/page.html" %}
 
-{% load mezzanine_tags %}
+{% load mezzanine_tags pages_tags i18n %}
 
 {% block main %}{{ block.super }}
 
@@ -27,4 +27,9 @@
 </ul>
 
 {% endblock %}
+{% endblock %}
+{% block side_widget %}
+{% set_short_url_for page %}
+<a class="btn btn-sm share-twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ page.short_url|urlencode }}&amp;text={{ page.title|urlencode }}">{% trans "Share on Twitter" %}</a>
+<a class="btn btn-sm share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">{% trans "Share on Facebook" %}</a>
 {% endblock %}
