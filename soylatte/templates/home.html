@@ -15,40 +15,40 @@ AWS Step by Step
 {% endblock %}
 
 {% block main %}
-{% comment "Ideally Iterate %}
+{% comment "Ideally Iterate" %}
 Ideally iterate page.title, but not work. Refer Readme for detail.
 This comment block cannot be inserted between blocktrans.
 {% endcomment %}
-{% blocktrans %}
 <div class="container">
     <div class="row">
     <div class="col-lg-8">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="/aws/basic/">アプリケーションエンジニア向け</a>
+    {% for page in page_branch %}
+                    <span>testa</span>
+    {% if page.in_menu %}
+                    <span class="text-center">
+                    <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+                    </span>
+    {% endif %}
+    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <a href="/aws/utlilization/">AWSを活用する</a>
                     <p class="text-center">
-                    <ul><a href="/aws/basic/チュートリアル1/">チュートリアル1</a></ul>
-                    <ul><a href="/aws/basic/チュートリアル2/">チュートリアル2</a></ul>
-                    <ul><a href="/aws/basic/チュートリアル3/">チュートリアル3</a></ul>
-                    <ul><a href="/aws/basic/チュートリアル後にすべき事/">チュートリアル後にすべき事</a></ul>
+                    <ul><a href="/aws/introduction/">AWSの導入</a></ul>
+                    <ul><a href="/aws/cost/">コスト最適化</a></ul>
+                    <ul><a href="/aws/operation/">運用性の向上</a></ul>
+                    <ul><a href="/aws/practice/">"ベストプラクティス"</a></ul>
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <a href="/aws/intermediate/">オンプレミスエンジニア向け</a>
+                    <a href="/aws/management/">AWSプロジェクトのマネジメント</a>
                     <p class="text-center">
-                    <ul><a href="/aws/intermediate/クラウドサービスとは/">クラウドサービスとは</a></ul>
-                    <ul><a href="/aws/intermediate/クラウドを活かした構成/">クラウドを活かした構成</a></ul>
-                    <ul><a href="/aws/intermediate/オンプレミスとの違い/">オンプレミスとの違い</a></ul>
-                    <ul><a href="/aws/intermediate/クラウドを学ぶべきか/">クラウドを学ぶべきか</a></ul>
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <a href="/aws/advanced/">AWSエンジニア向け</a>
-                    <p class="text-center">
-                    <ul><a href="/aws/advanced/devopsとは/">DevOpsとは</a></ul>
-                    <ul><a href="/aws/advanced/devopsのメリットデメリット/">DevOpsのメリットデメリット</a></ul>
-                    <ul><a href="/aws/advanced/devopsの構成例/">DevOpsの構成例</a> </ul>
-                    <ul><a href="/aws/advanced/エンジニアに求められる事/">「エンジニア」に求められる事</a></ul>
+                    <ul><a href="/aws/teamwork/">チームワークへの投資</a></ul>
+                    <ul><a href="/aws/automation/">自動化の実践</a></ul>
+                    <ul><a href="/aws/mindset/">マインドセット</a></ul>
+                    <ul><a href="/aws/development/">「システム開発」に求められる事</a></ul>
                     </p>
                 </div>
             </div>
@@ -56,5 +56,4 @@ This comment block cannot be inserted between blocktrans.
     </div>
 </div>
 
-{% endblocktrans %}
 {% endblock %}

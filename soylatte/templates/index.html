@@ -1,28 +1,60 @@
 {% extends "base.html" %}
-{% load i18n %}
-
+{% load i18n pages_tags %}
 {% block meta_title %}{% trans "Home" %}{% endblock %}
-{% block title %}{% trans "Home" %}{% endblock %}
+{% block title %}
+AWS Step by Step
+    <h4>
+    <small class="text-muted">
+    システムエンジニアがAWSを活用する手法を紹介するサイトです。
+    実際に使えるAWS構築手法や運用のベストプラクティスを取り上げます。
+    </h4>
+{% endblock %}
 
 {% block breadcrumb_menu %}
 <li class="active">{% trans "Home" %}</li>
 {% endblock %}
 
 {% block main %}
+{% comment "Ideally Iterate" %}
+Ideally iterate page.title, but not work. Refer Readme for detail.
+This comment block cannot be inserted between blocktrans.
+{% endcomment %}
 {% blocktrans %}
-<h2>Congratulations!</h2>
-<p>
-    Welcome to your new Mezzanine powered website.
-    Here are some quick links to get you started:
-</p>
-<ul>
-    <li><a href="/admin/">Log in to the admin interface</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/content-architecture.html">Creating custom page types</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#templates">Modifying HTML templates</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#why-isn-t-the-homepage-a-page-object-i-can-edit-via-the-admin">Changing this homepage</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html">Other frequently asked questions</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/configuration.html#default-settings">Full list of settings</a></li>
-    <li><a href="http://mezzanine.jupo.org/docs/deployment.html">Deploying to a production server</a></li>
-</ul>
+<div class="container">
+    <div class="row">
+    <div class="col-lg-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/aws/starter/">AWSをはじめる</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/tutorial/ec2/">チュートリアル1</a></ul>
+                    <ul><a href="/aws/tutorial/sg/">チュートリアル2</a></ul>
+                    <ul><a href="/aws/tutorial/rds/">チュートリアル3</a></ul>
+                    <ul><a href="/aws/tutorial/afterward/">チュートリアル後にすべき事</a></ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/aws/utlilization/">AWSを活用する</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/introduction/">AWSの導入</a></ul>
+                    <ul><a href="/aws/cost/">コスト最適化</a></ul>
+                    <ul><a href="/aws/operation/">運用性の向上</a></ul>
+                    <ul><a href="/aws/practice/">"ベストプラクティス"</a></ul>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="/aws/management/">AWSプロジェクトのマネジメント</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/teamwork/">チームワークへの投資</a></ul>
+                    <ul><a href="/aws/automation/">自動化の実践</a></ul>
+                    <ul><a href="/aws/mindset/">マインドセット</a></ul>
+                    <ul><a href="/aws/development/">「システム開発」に求められる事</a></ul>
+                    </p>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>
+
 {% endblocktrans %}
 {% endblock %}
