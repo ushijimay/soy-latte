@@ -19,19 +19,19 @@ AWS Step by Step
 Ideally iterate page.title, but not work. Refer Readme for detail.
 This comment block cannot be inserted between blocktrans.
 {% endcomment %}
+{% blocktrans %}
 <div class="container">
     <div class="row">
     <div class="col-lg-8">
             <div class="row">
                 <div class="col-md-4">
-    {% for page in page_branch %}
-                    <span>testa</span>
-    {% if page.in_menu %}
-                    <span class="text-center">
-                    <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-                    </span>
-    {% endif %}
-    {% endfor %}
+                    <a href="/aws/starter/">AWSをはじめる</a>
+                    <p class="text-center">
+                    <ul><a href="/aws/tutorial/ec2/">チュートリアル1</a></ul>
+                    <ul><a href="/aws/tutorial/sg/">チュートリアル2</a></ul>
+                    <ul><a href="/aws/tutorial/rds/">チュートリアル3</a></ul>
+                    <ul><a href="/aws/tutorial/afterward/">チュートリアル後にすべき事</a></ul>
+                    </p>
                 </div>
                 <div class="col-md-4">
                     <a href="/aws/utlilization/">AWSを活用する</a>
@@ -56,4 +56,5 @@ This comment block cannot be inserted between blocktrans.
     </div>
 </div>
 
+{% endblocktrans %}
 {% endblock %}
