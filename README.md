@@ -8,8 +8,7 @@ yum install libjpeg-devel
 yum install gcc-devel
 yum install libcc-devel
 yum install libgccjit-devel
-yum -y install gcc gcc-c++ kernel-devel
-yum install -y python3-devel
+yum -y install gcc gcc-c++ kernel-devel python3-devel python-psycopg2
 yum install git
 
 #Create Virtual Python to use python3
