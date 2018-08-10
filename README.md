@@ -10,10 +10,11 @@ cd /usr/local/src
 python3 -m venv soylatte
 source soylatte/bin/activate
 pip install --upgrade setuptools
+pip install psycopg2-binary
 git clone https://github.com/stephenmcd/mezzanine.git
 cd mezzanine
 python setup.py install #Virtual python goes as python3
-cp -p  /usr/local/src/mezzanine/mezzanine/bin/mezzanine_project.py  /usr/bin/mezzanine_project.py
+#cp -p  /usr/local/src/mezzanine/mezzanine/bin/mezzanine_project.py  /usr/bin/mezzanine_project.py
 chmod +x /usr/bin/mezzanine_project.py
 
 #Create PJ
