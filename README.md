@@ -2,9 +2,8 @@
 
 #Installation Dependency
 
-yum install zlib-devel openjpeg-devel turbojpeg-devel libjpeg-devel gcc-devel libcc-devel libgccjit-devel
-yum -y install gcc gcc-c++ kernel-devel python3-devel python-psycopg2
-yum install git
+yum -y install zlib-devel openjpeg-devel turbojpeg-devel libjpeg-devel gcc-devel libcc-devel libgccjit-devel
+yum -y install gcc gcc-c++ kernel-devel python3-devel python-psycopg2 git
 
 #Create Virtual Python to use python3
 cd /usr/local/src
