@@ -1,25 +1,20 @@
-# soy-latte
+## soy-latte
 
 #Installation Dependency
-yum install zlib-devel
-yum install openjpeg-devel
-yum install turbojpeg-devel
-yum install libjpeg-devel
-yum install gcc-devel
-yum install libcc-devel
-yum install libgccjit-devel
-yum -y install gcc gcc-c++ kernel-devel python3-devel python-psycopg2
-yum install git
+
+yum -y install zlib-devel openjpeg-devel turbojpeg-devel libjpeg-devel gcc-devel libcc-devel libgccjit-devel
+yum -y install gcc gcc-c++ kernel-devel python3-devel python-psycopg2 git
 
 #Create Virtual Python to use python3
 cd /usr/local/src
 python3 -m venv soylatte
 source soylatte/bin/activate
 pip install --upgrade setuptools
+pip install psycopg2-binary
 git clone https://github.com/stephenmcd/mezzanine.git
 cd mezzanine
 python setup.py install #Virtual python goes as python3
-cp -p  /usr/local/src/mezzanine/mezzanine/bin/mezzanine_project.py  /usr/bin/mezzanine_project.py
+#cp -p  /usr/local/src/mezzanine/mezzanine/bin/mezzanine_project.py  /usr/bin/mezzanine_project.py
 chmod +x /usr/bin/mezzanine_project.py
 
 #Create PJ
