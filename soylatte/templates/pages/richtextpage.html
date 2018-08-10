@@ -4,10 +4,11 @@
 
 {% block main %}{{ block.super }}
 
-
+<div class="col-md-12">
 {% editable page.richtextpage.content %}
 {{ page.richtextpage.content|richtext_filters }}
 {% endeditable %}
+</div>
 {% block blog_post_previous_next %}
 <ul class="pager">
 {% with page.get_previous_by_publish_date as previous %}

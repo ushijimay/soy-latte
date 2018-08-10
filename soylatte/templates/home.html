@@ -3,11 +3,9 @@
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}
 AWS Step by Step
-    <h4>
-    <small class="text-muted">
-    システムエンジニアがAWSを活用する手法を紹介するサイトです。
-    実際に使えるAWS構築手法や運用のベストプラクティスを取り上げます。
-    </h4>
+    <small class="text-muted"><small>
+        実際に使えるAWS構築手法や運用のベストプラクティスをを紹介するサイトです。
+    </small></small>
 {% endblock %}
 
 {% block breadcrumb_menu %}
@@ -20,16 +18,13 @@ Ideally iterate page.title, but not work. Refer Readme for detail.
 This comment block cannot be inserted between blocktrans.
 {% endcomment %}
 {% blocktrans %}
-<div class="container">
-    <div class="row">
-    <div class="col-lg-8">
-            <div class="row">
+
                 <div class="col-md-4">
                     <a href="/aws/basic/">AWSをはじめる</a>
                     <p class="text-center">
-                    <ul><a href="/aws/tutorial/ec2/">チュートリアル（サーバー）</a></ul>
-                    <ul><a href="/aws/tutorial/sg/">チュートリアル（ネットワーク）</a></ul>
-                    <ul><a href="/aws/tutorial/rds/">チュートリアル（データベース）</a></ul>
+                    <ul><a href="/aws/tutorial/ec2/">チュートリアル１</a></ul>
+                    <ul><a href="/aws/tutorial/sg/">チュートリアル２</a></ul>
+                    <ul><a href="/aws/tutorial/rds/">チュートリアル３</a></ul>
                     <ul><a href="/aws/tutorial/afterward/">チュートリアル後にすべき事</a></ul>
                     </p>
                 </div>
@@ -37,9 +32,9 @@ This comment block cannot be inserted between blocktrans.
                     <a href="/aws/intermediate/">AWSを活用する</a>
                     <p class="text-center">
                     <ul><a href="/aws/design/">シンプルな設計</a></ul>
-                    <ul><a href="/aws/implementation/">規約に基づいた構築</a></ul>
+                    <ul><a href="/aws/implementation/">規約に沿った構築</a></ul>
                     <ul><a href="/aws/maintenance/">最小限の運用</a></ul>
-                    <ul><a href="/aws/practice/">"ベストプラクティス"</a></ul>
+                    <ul><a href="/aws/practice/">クラウドな文化の形成</a></ul>
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -48,13 +43,8 @@ This comment block cannot be inserted between blocktrans.
                     <ul><a href="/aws/teamwork/">チームワークへの投資</a></ul>
                     <ul><a href="/aws/automation/">自動化の実践</a></ul>
                     <ul><a href="/aws/mindset/">マインドセット</a></ul>
-                    <ul><a href="/aws/development/">「システム開発」に求められる事</a></ul>
+                    <ul><a href="/aws/development/">「システム開発」の進め方</a></ul>
                     </p>
                 </div>
-            </div>
-    </div>
-    </div>
-</div>
-
 {% endblocktrans %}
 {% endblock %}
