@@ -1,5 +1,5 @@
-## soy-latte
-
+### soy-latte
+##Server
 #Installation Dependency
 
 yum -y install zlib-devel openjpeg-devel turbojpeg-devel libjpeg-devel gcc-devel libcc-devel libgccjit-devel
@@ -17,7 +17,12 @@ python setup.py install #Virtual python goes as python3
 #cp -p  /usr/local/src/mezzanine/mezzanine/bin/mezzanine_project.py  /usr/bin/mezzanine_project.py
 chmod +x /usr/bin/mezzanine_project.py
 
-#Create PJ
+##Docker Container
+#
+#apt-get update && apt-get install -y git
+#pip install psycopg2-binary mezzanine gunicorn
+
+##Create PJ
 cd /opt
 mezzanine_project soylatte
 
