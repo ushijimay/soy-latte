@@ -9,7 +9,7 @@ Website that provides know-how to utilize Cloud Service such as AWS, GCP, Azure 
 ## Demo  
 Coming soon
 
-## VS.   
+## Document   
 Coming soon
 
 ## Requirement  
