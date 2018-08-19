@@ -4,7 +4,7 @@
 
 {% block main %}{{ block.super }}
 
-<div class="col-md-12">
+<div class="col-md-12" style="background-color: ghostwhite; padding : 20px ; margin-bottom : 5px ;">
 {% editable page.richtextpage.content %}
 {{ page.richtextpage.content|richtext_filters }}
 {% endeditable %}
