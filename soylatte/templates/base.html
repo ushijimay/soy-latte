@@ -29,12 +29,6 @@
 {% if LANGUAGE_BIDI %}
 <link rel="stylesheet" href="{% static "css/bootstrap-rtl.css" %}">
 {% endif %}
-{% ifinstalled cartridge.shop %}
-<link rel="stylesheet" href="{% static "css/cartridge.css" %}">
-{% if LANGUAGE_BIDI %}
-<link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
-{% endif %}
-{% endifinstalled %}
 {% block extra_css %}{% endblock %}
 {% endcompress %}
 
@@ -45,10 +39,6 @@
 {% block extra_js %}{% endblock %}
 {% endcompress %}
 
-<!--[if lt IE 9]>
-<script src="{% static "js/html5shiv.js" %}"></script>
-<script src="{% static "js/respond.min.js" %}"></script>
-<![endif]-->
 
 {% block extra_head %}{% endblock %}
 </head>
@@ -57,6 +47,7 @@
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
+
 <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">{% trans "Toggle Navigation" %}</span>
@@ -68,10 +59,11 @@
     {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/aws/">Cloud Steps</a>{% endif %}
     {% endblock%}
 </div>
+
 <div class="navbar-collapse collapse">
     {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
-    {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
 </div>
+
 </div>
 </div>
 
@@ -91,14 +83,13 @@
 {% endnevercache %}
 
 <h1>{% block title %}{% endblock %}</h1>
-<ul class="breadcrumb">
 {% spaceless %}
-{% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-{% endspaceless %}
+<small>
+<ul class="breadcrumb">
+    {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
 </ul>
-
-</div>
-
+</small>
+{% endspaceless %}
 
 <div class="container">
 <font-size>
