@@ -16,20 +16,10 @@ jobs:
           name: Build application Docker image
           command: |
             docker build -t app .
-      # If we had
-      #- run:
-      #    name: Run mongo db
-      #    command: |
-      #      docker run --name mongo_test -d mongo
-      #- run:
-      #    name: Run tests
-      #    command: |
-      #      docker run -a STDOUT -it -p 4100:3000 --link mongo_test:db --name test_app app gulp test
-      #      #docker exec -t test_app gulp test
       - deploy:
           name: Push application Docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               CLUSTER='sample-webapp-cluster'
               FAMILY='nginx-sample-webapp'
               DOCKER_IMAGE='nginx-sample-webapp'
@@ -55,12 +45,20 @@ jobs:
                     }
                   ],
                   "environment" : [
-                      { "name" : "NODE_ENV", "value" : "production" }
+                      { "name" : "DOCKUID", "value" : "10004" },
+                      { "name" : "DOCKGID", "value" : "10004" },
+                      { "name" : "DOCKUNIWRK", "value" : "1" },
+                      { "name" : "DOCKMEZPRT", "value" : "soylatte" },
+                      { "name" : "DOCKPGHOST", "value" : %s },
+                      { "name" : "DOCKPGPORT", "value" : "5432" },
+                      { "name" : "DOCKPGDB", "value" : $s },
+                      { "name" : "DOCKPGUSER", "value" : %s },
+                      { "name" : "DOCKPGPASSWD", "value" : %s }
                   ]
                 }
               ]'
               echo "$task_template"
-              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $TASK $CIRCLE_SHA1)
+              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $TASK $CIRCLE_SHA1 $DOCKPGHOST $DOCKPGDB $DOCKPGUSER $DOCKPGPASSWD)
               # Register task definition
               json=$(aws ecs register-task-definition --container-definitions "$task_def" --family "$FAMILY")
               # Grab revision # using regular bash and grep
