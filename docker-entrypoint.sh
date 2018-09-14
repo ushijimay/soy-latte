@@ -1,8 +1,8 @@
 #!/bin/sh
 
-DEBUG="TRUE"
-SECRET_KEY=""
-NEVERCACHE_KEY=""
+MYDEBUG="False"
+MYSECRET_KEY=""
+MYNEVERCACHE_KEY=""
 MYUSER="mezzanine"
 MYGID="10004"
 MYUID="10004"
@@ -85,29 +85,43 @@ ConfigurePostgres()
           MYPGDB="${DOCKPGDB}"
           if [ -n "${DOCKPGPORT}" ]; then
             MYPGPORT="${DOCKPGPORT}"
+            if [ -n "${SECRET_KEY}" ]; then
+              MYSECRET_KEY="${SECRET_KEY}"
+              if [ -n "${NEVERCACHE_KEY}" ]; then
+                MYNEVERCACHE_KEY="${NEVERCACHE_KEY}"
+                if [ -n "${DEBUG}" ]; then
+                MYDEBUG="${DEBUG}"
+                fi
+                /usr/bin/tee /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py <<EOF          /usr/bin/tee /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py <<EOF
+DEBUG = ${MYDEBUG}
+SECRET_KEY = "${MYSECRET_KEY}"
+NEVERCACHE_KEY = "${MYNEVERCACHE_KEY}"
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "${MYPGDB}",
+        "USER": "${MYPGUSER}",
+        "PASSWORD": "${MYPGPASSWD}",
+        "HOST": "${MYPGHOST}",
+        "PORT": "${MYPGPORT}",
+    }
+}
+EOF
+#          /bin/sed -i "s|\s*\"ENGINE\"\s*:\s*\"django.db.backends.\",|\ \ \ \ \ \ \ \ \"ENGINE\":\ \"django.db.backends.postgresql_psycopg2\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/ettings.py
+#          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"HOST\":\ \"${MYPGHOST}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+#          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PORT\":\ \"${MYPGPORT}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+#          /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+#          /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+#          /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+            else
+              /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
+            fi
+          else
+            /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
           fi
-#          /bin/cat /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py <<EOF
-##DEBUG = ${DEBUG}
-#SECRET_KEY = "${SECRET_KEY}"
-#NEVERCACHE_KEY = "${NEVERCACHE_KEY}"
-#DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.postgresql_psycopg2",
-#        "NAME": "${MYPGDB}",
-#        "USER": "${MYPGUSER}",
-#        "PASSWORD": "${MYPGPASSWD}",
-#        "HOST": "${MYPGHOST}",
-#        "PORT": "${MYPGPORT}",
-#    }
-#}
-#EOF
-          /bin/sed -i "s|\s*\"ENGINE\"\s*:\s*\"django.db.backends.\",|\ \ \ \ \ \ \ \ \"ENGINE\":\ \"django.db.backends.postgresql_psycopg2\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/ettings.py
-          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"HOST\":\ \"${MYPGHOST}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PORT\":\ \"${MYPGPORT}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-          /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-          /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
-          /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
         else
+          /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
+        fi          else
           /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
         fi  
       else
@@ -123,6 +137,7 @@ ConfigurePostgres()
 
 ConfigureUser
 ConfigureSsmtp
+ConfigurePostgres
 
 if [ "$1" = 'mezzanine' ]; then
   if [ -n "${DOCKMEZPRT}" ]; then
@@ -133,11 +148,11 @@ if [ "$1" = 'mezzanine' ]; then
   fi
   if [ -d "/project/${MYPROJECT}" ]; then
     cd "/project/${MYPROJECT}"
+    ConfigurePostgres
   else
     cd /project/
     /sbin/su-exec "${MYUSER}" mezzanine-project "${MYPROJECT}"
     cd "/project/${MYPROJECT}"
-    ConfigurePostgres
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py collectstatic --noinput
   fi
