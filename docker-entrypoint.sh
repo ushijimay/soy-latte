@@ -113,17 +113,18 @@ EOF
 #          /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
 #          /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
 #          /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py
+              else
+                /bin/echo "ERROR: DEBUG config is missing, please define DEBUG environment variable."
+              fi
             else
-              /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
+              /bin/echo "ERROR: django nevercache key is missing, please define NEVERCACHE_KEY environment variable."
             fi
           else
-            /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
+            /bin/echo "ERROR: django secret key is missing, please define SECRET_KEY environment variable."
           fi
         else
           /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
-        fi          else
-          /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
-        fi  
+        fi
       else
         /bin/echo "ERROR: postgresql user's password is missing, please define DOCKPGPASSWD environment variable. Note that empty password are not supported."
       fi
