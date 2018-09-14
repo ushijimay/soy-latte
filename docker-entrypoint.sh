@@ -92,7 +92,7 @@ ConfigurePostgres()
                 if [ -n "${DEBUG}" ]; then
                 MYDEBUG="${DEBUG}"
                 fi
-                /usr/bin/tee /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py <<EOF          /usr/bin/tee /project/"${MYPROJECT}"/"${MYPROJECT}"/settings.py <<EOF
+                /usr/bin/tee /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py <<EOF
 DEBUG = ${MYDEBUG}
 SECRET_KEY = "${MYSECRET_KEY}"
 NEVERCACHE_KEY = "${MYNEVERCACHE_KEY}"
