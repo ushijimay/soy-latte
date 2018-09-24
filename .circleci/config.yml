@@ -49,11 +49,11 @@ jobs:
                       { "name" : "DOCKGID", "value" : "10004" },
                       { "name" : "DOCKUNIWRK", "value" : "1" },
                       { "name" : "DOCKMEZPRT", "value" : "soylatte" },
-                      { "name" : "DOCKPGHOST", "value" : %s },
+                      { "name" : "DOCKPGHOST", "value" : "%s" },
                       { "name" : "DOCKPGPORT", "value" : "5432" },
-                      { "name" : "DOCKPGDB", "value" : $s },
-                      { "name" : "DOCKPGUSER", "value" : %s },
-                      { "name" : "DOCKPGPASSWD", "value" : %s }
+                      { "name" : "DOCKPGDB", "value" : "$s" },
+                      { "name" : "DOCKPGUSER", "value" : "%s" },
+                      { "name" : "DOCKPGPASSWD", "value" : "%s" }
                   ]
                 }
               ]'

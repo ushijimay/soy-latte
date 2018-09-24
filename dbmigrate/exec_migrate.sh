@@ -1,0 +1,4 @@
+#docker run -it    -e DOCKPGHOST=10.4.166.134    -e DOCKPGPORT=54320    -e DOCKPGDB=soylatte    -e DOCKPGUSER=postgres -e SECRET_KEY=hogehoge -e NEVERCACHE_KEY=hogehoge -e DOCKPGPASSWD=hogehoge -e DEBUG=True -p 8000:8000 test /usr/bin/python3 /project/soylatte/manage.py createdb
+#docker ps
+#docker run -it    -e DOCKPGHOST=10.4.166.134    -e DOCKPGPORT=54320    -e DOCKPGDB=soylatte    -e DOCKPGUSER=postgres -e SECRET_KEY=hogehoge -e NEVERCACHE_KEY=hogehoge -e DOCKPGPASSWD=hogehoge -e DEBUG=True -p 8000:8000 test /usr/bin/python3 /project/soylatte/manage.py makemigrations
+#docker run -it    -e DOCKPGHOST=10.4.166.134    -e DOCKPGPORT=54320    -e DOCKPGDB=soylatte    -e DOCKPGUSER=postgres -e SECRET_KEY=hogehoge -e NEVERCACHE_KEY=hogehoge -e DOCKPGPASSWD=hogehoge -e DEBUG=True -p 8000:8000 test /usr/bin/python3 /project/soylatte/manage.py migrate

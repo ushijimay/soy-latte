@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
+LABEL maintainer "Yuya Ushijima <github:ushijimay>"
 
 ARG TEST1
 ARG DOCKPGDB
