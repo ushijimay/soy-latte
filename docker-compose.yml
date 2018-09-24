@@ -12,8 +12,6 @@ services:
     image: soylatte_web:test
     ports:
       - 0.0.0.0:80:80
-    environment:
-      - NGINX_HOST=10.4.162.151
   app:
     build:
       context: .
@@ -22,7 +20,7 @@ services:
       - 0.0.0.0:8000:8000
     environment:
       DEBUG: "True"
-      DOCKPGHOST: 10.4.162.151
+      DOCKPGHOST: YOUR-LOCAL-IP
       DOCKPGPORT: 54320
       DOCKPGDB: soylatte
       DOCKPGUSER: postgres
