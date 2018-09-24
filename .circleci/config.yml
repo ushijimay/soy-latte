@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:18.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
@@ -21,10 +21,10 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               CLUSTER='sample-webapp-cluster'
-              FAMILY='nginx-sample-webapp'
-              DOCKER_IMAGE='nginx-sample-webapp'
-              TASK='nginx-sample-webapp'
-              SERVICE='sample-webapp-service'
+              FAMILY='aws-steps-app'
+              DOCKER_IMAGE='aws-steps-app'
+              TASK='aws-steps-app'
+              SERVICE='aws-steps-app-service'
               # Login to AWS
               aws configure set region $AWS_REGION
               $(aws ecr get-login)
@@ -40,11 +40,12 @@ jobs:
                   "memoryReservation": 128,
                   "portMappings": [
                     {
-                      "containerPort": 80,
+                      "containerPort": 8000,
                       "hostPort": 0
                     }
                   ],
                   "environment" : [
+                      { "name" : "SERVICE_8000_NAME", "value" : "%s" },
                       { "name" : "DOCKUID", "value" : "10004" },
                       { "name" : "DOCKGID", "value" : "10004" },
                       { "name" : "DOCKUNIWRK", "value" : "1" },
@@ -58,7 +59,7 @@ jobs:
                 }
               ]'
               echo "$task_template"
-              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $TASK $CIRCLE_SHA1 $DOCKPGHOST $DOCKPGDB $DOCKPGUSER $DOCKPGPASSWD)
+              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $TASK $CIRCLE_SHA1 $TASK $DOCKPGHOST $DOCKPGDB $DOCKPGUSER $DOCKPGPASSWD)
               # Register task definition
               json=$(aws ecs register-task-definition --container-definitions "$task_def" --family "$FAMILY")
               # Grab revision # using regular bash and grep

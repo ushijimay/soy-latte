@@ -1,0 +1,40 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+      args:
+        - NGINX_HOST
+        - NGINX_PORT
+        - APP_HOST
+        - APP_PORT
+    image: soylatte_web:test
+    ports:
+      - 0.0.0.0:80:80
+    environment:
+      - NGINX_HOST=10.4.162.151
+  app:
+    build:
+      context: .
+    image: soylatte_app:test
+    ports: 
+      - 0.0.0.0:8000:8000
+    environment:
+      DEBUG: "True"
+      DOCKPGHOST: 10.4.162.151
+      DOCKPGPORT: 54320
+      DOCKPGDB: soylatte
+      DOCKPGUSER: postgres
+      DOCKPGPASSWD: Test1Pass
+      SECRET_KEY: adf7sgEF93E33
+      NEVERCACHE_KEY: adfkaafadsfad97093gawegsdg
+  db:
+    image: postgres:9.6
+    ports:
+      - 0.0.0.0:54320:5432
+    environment:
+      POSTGRES_PASSWORD: Test1Pass
+      POSTGRES_DB: soylatte
+      POSTGRES_USER: postgres
+      POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C

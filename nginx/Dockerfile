@@ -21,6 +21,8 @@ COPY nginx/mysite.template /etc/nginx/conf.d/mysite.template
 
 ##Transform templates into real ones with envs
 RUN set -x && \
+    echo ${NGINX_HOST} && \
+    echo ${APP_HOST} && \
     envsubst '$$NGINX_HOST$$NGINX_PORT$$APP_HOST$$APP_PORT' < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && \
     cat /etc/nginx/conf.d/default.conf
 
