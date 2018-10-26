@@ -20,7 +20,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "app/staging" ]; then
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               CLUSTER='sample-webapp-cluster'
               FAMILY='aws-steps-app'
               DOCKER_IMAGE='aws-steps/app'
@@ -28,7 +28,7 @@ jobs:
               SERVICE='aws-steps-app-service'
               # Login to AWS
               aws configure set region $AWS_REGION
-              $(aws ecr get-login)
+              $(aws ecr get-login --no-include-email)
               # Tag and push docker image
               docker tag app $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
               docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
@@ -38,11 +38,11 @@ jobs:
                   "name": "%s",
                   "image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
                   "essential": true,
-                  "memoryReservation": 512,
+                  "memoryReservation": 256,
                   "portMappings": [
                     {
                       "containerPort": 8000,
-                      "hostPort": 0
+                      "hostPort": 8000
                     }
                   ],
                   "environment" : [
@@ -52,13 +52,13 @@ jobs:
                       { "name" : "DOCKPGDB", "value" : "soylatte" },
                       { "name" : "DOCKPGUSER", "value" : "postgres" },
                       { "name" : "DOCKPGPASSWD", "value" : "%s" },
-                      { "name" : "SECRET_KEY", "value" : "$s" },
+                      { "name" : "SECRET_KEY", "value" : "%s" },
                       { "name" : "NEVERCACHE_KEY", "value" : "%s" }
                   ]
                 }
               ]'
               echo "$task_template"
-              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $TASK $CIRCLE_SHA1 $DOCKPGHOST $DOCKPGPASSWD $SECRET_KEY $NEVERCACHE_KEY)
+              task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $DOCKER_IMAGE $CIRCLE_SHA1 $DOCKPGHOST $DOCKPGPASSWD $SECRET_KEY $NEVERCACHE_KEY)
               # Register task definition
               json=$(aws ecs register-task-definition --container-definitions "$task_def" --family "$FAMILY")
               # Grab revision # using regular bash and grep
