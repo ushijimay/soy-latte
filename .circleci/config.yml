@@ -133,7 +133,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  build-app_and_build-web:
     jobs:
       - build-app
           filters:
