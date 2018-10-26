@@ -25,7 +25,7 @@ services:
       DEBUG:                "False"              #Must be "False" to get APM to work. Plus, not boolean, string
       DOCKPGHOST:           ${YOUR_LOCAL_IP}  
       DOCKPGPORT:           5432
-      DOCKPGDB:             testweb
+      DOCKPGDB:             soylatte
       DOCKPGUSER:           postgres
       DOCKPGPASSWD:         Test1Pass            #local usage only
       SECRET_KEY:           Example5ecretKey     #local usage only
@@ -39,7 +39,7 @@ services:
       - 0.0.0.0:5432:5432
     environment:
       POSTGRES_PASSWORD:    Test1Pass            #local usage only
-      POSTGRES_DB:          testweb
+      POSTGRES_DB:          soylatte
       POSTGRES_USER:        postgres
       POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
 

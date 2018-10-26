@@ -23,7 +23,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "app/staging" ]; then
               CLUSTER='sample-webapp-cluster'
               FAMILY='aws-steps-app'
-              DOCKER_IMAGE='aws-steps-app'
+              DOCKER_IMAGE='aws-steps/app'
               TASK='aws-steps-app'
               SERVICE='aws-steps-app-service'
               # Login to AWS
@@ -90,7 +90,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "web/staging" ]; then
               CLUSTER='sample-webapp-cluster'
               FAMILY='aws-steps-web'
-              DOCKER_IMAGE='aws-steps-web'
+              DOCKER_IMAGE='aws-steps/web'
               TASK='aws-steps-web'
               SERVICE='aws-steps-web-service'
               # Login to AWS
