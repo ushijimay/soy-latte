@@ -20,7 +20,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "app/staging" ]; then
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
               CLUSTER='sample-webapp-cluster'
               FAMILY='aws-steps-app'
               DOCKER_IMAGE='aws-steps/app'
@@ -38,7 +38,7 @@ jobs:
                   "name": "%s",
                   "image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
                   "essential": true,
-                  "memoryReservation": 512,
+                  "memoryReservation": 256,
                   "portMappings": [
                     {
                       "containerPort": 8000,
