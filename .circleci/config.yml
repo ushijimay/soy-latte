@@ -136,9 +136,6 @@ workflows:
   build-app_and_build-web:
     jobs:
       - build-app:
-          filters:
-            branches:
-              only: /^app*/
       - build-web:
           filters:
             branches:
