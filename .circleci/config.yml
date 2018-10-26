@@ -24,7 +24,7 @@ jobs:
               CLUSTER='sample-webapp-cluster'
               FAMILY='aws-steps-app'
               DOCKER_IMAGE='aws-steps/app'
-              TASK='aws-steps-app'
+              TASK='aws-steps/app'
               SERVICE='aws-steps-app-service'
               # Login to AWS
               aws configure set region $AWS_REGION
