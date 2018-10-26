@@ -21,7 +21,7 @@ server {
         }
     }
     location /static/ {
-        alias /usr/share/nginx/static/; #Copied from /project/${PROJECT_NAME}/static on git through Dockerfile
+        alias /usr/share/nginx/static/; 
      }
 
     #error_page  404              /404.html;

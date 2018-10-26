@@ -1,22 +1,14 @@
 FROM alpine:latest
 LABEL maintainer "Yuya Ushijima <github:ushijimay>"
 
-ARG TEST1
-ARG DOCKPGDB
-ARG DOCKPGHOST
-ARG DOCKPGUSER
-ARG DOCKPGPASSWD
-
 ### Environment variables
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     TERM='xterm' \
-    TEST1=$TEST1 \
     DOCKPGDB=$DOCKPGDB \
     DOCKPGHOST=$DOCKPGHOST \
     DOCKPGUSER=$DOCKPGUSER \
     DOCKPGPASSWD=$DOCKPGPASSWD
-
 
 ### Install Application
 RUN apk --no-cache upgrade && \
@@ -34,7 +26,7 @@ RUN apk --no-cache upgrade && \
       postgresql-libs \
       su-exec && \
     pip3 --no-cache-dir install --upgrade setuptools pip && \
-    pip3 --no-cache-dir install mezzanine==4.3.1 psycopg2-binary==2.7.5 gunicorn==19.9.0 && \
+    pip3 --no-cache-dir install mezzanine==4.3.1 psycopg2-binary==2.7.5 gunicorn==19.9.0 ddtrace setproctitle && \
     apk del --no-cache --purge \
       build-deps  && \
     rm -rf /tmp/* \
@@ -52,6 +44,6 @@ EXPOSE 8000
 #USER mezzanine
 
 ### Start Mezzanine
-COPY docker-entrypoint.sh /
+COPY app/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["mezzanine"]
