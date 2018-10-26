@@ -1,0 +1,45 @@
+version: '3'
+services:
+  web:
+    build:
+      context:              .                    #cannot have ./nginx here b/c some dirs would be outside of context for Dockerfile
+      dockerfile:           Dockerfile_nginx     #./nginx/Dockerfile doesn't work for the context reason mentioned  above
+    image:                  testweb_web:test
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:81:81                            #Status stub port for datadog monitoring
+    environment:
+      NGINX_HOST:           ${YOUR_LOCAL_IP}     #Export Env before docker-compose
+      NGINX_PORT:           80
+      APP_HOST:             ${YOUR_LOCAL_IP}
+      APP_PORT:             8000
+  app:
+    build:
+      context:              .
+    image:                  testweb_app:test
+    ports: 
+      - 0.0.0.0:8000:8000
+    depends_on:
+      - "db"                                     #Confirms that db container is up, but doesnt mean db service is up inside.
+    environment:
+      DEBUG:                "False"              #Must be "False" to get APM to work. Plus, not boolean, string
+      DOCKPGHOST:           ${YOUR_LOCAL_IP}  
+      DOCKPGPORT:           5432
+      DOCKPGDB:             testweb
+      DOCKPGUSER:           postgres
+      DOCKPGPASSWD:         Test1Pass            #local usage only
+      SECRET_KEY:           Example5ecretKey     #local usage only
+      NEVERCACHE_KEY:       Example2evercacheKey #local usage only
+  db:
+    build:
+      context:              .
+      dockerfile:           Dockerfile_postgres
+    image:                  testweb_db:9.6
+    ports:
+      - 0.0.0.0:5432:5432
+    environment:
+      POSTGRES_PASSWORD:    Test1Pass            #local usage only
+      POSTGRES_DB:          testweb
+      POSTGRES_USER:        postgres
+      POSTGRES_INITDB_ARGS: --encoding=UTF-8 --locale=C
+
