@@ -44,6 +44,6 @@ EXPOSE 8000
 #USER mezzanine
 
 ### Start Mezzanine
-COPY app/docker-entrypoint.sh /
+COPY project/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["mezzanine"]
