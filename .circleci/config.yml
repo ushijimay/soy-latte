@@ -52,7 +52,7 @@ jobs:
                       { "name" : "DOCKPGDB", "value" : "soylatte" },
                       { "name" : "DOCKPGUSER", "value" : "postgres" },
                       { "name" : "DOCKPGPASSWD", "value" : "%s" },
-                      { "name" : "SECRET_KEY", "value" : "$s" },
+                      { "name" : "SECRET_KEY", "value" : "%s" },
                       { "name" : "NEVERCACHE_KEY", "value" : "%s" }
                   ]
                 }
