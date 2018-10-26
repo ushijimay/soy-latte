@@ -132,6 +132,7 @@ jobs:
             fi
 
 workflows:
+  version: 2
   build-app_and_build-web:
     jobs:
       - build-app:
